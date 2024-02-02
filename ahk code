@@ -1,0 +1,53 @@
+#SingleInstance force
+#Persistent
+Menu, Tray, Tip, Version 1.0`nF1: open drops`nF2: Close the Program`n`nHow the program works:`n1. Go to the drop opening screen`n2. Press F1 to start auto drop opening`n3. Press F2 to close the program
+SetWorkingDir %A_ScriptDir%
+SetTitleMatchMode, 1
+CoordMode ToolTip, screen
+
+; Welcome-Box
+Gui, Font, s16 Bold, Arial
+Gui, Add, Text,, Have fun with the drop opening,`n wishes you PinkBro!
+Gui, Font
+Gui, Add, Picture, w300 h300, \PinkBro.png
+Gui, Add, Button, Center Default h21 w100 gStartProgram, Let's Go!
+Gui, Show
+return
+
+StartProgram:
+Gui, Destroy
+goto Program
+
+F1::
+Loop
+{
+    if !WinExist("Rocket League")
+    {
+        MsgBox, 4096, Warning!, Rocket League is not running!
+        Reload
+    }
+    else
+    {
+        ControlSend, ahk_parent, {Enter}, Rocket League
+        Sleep, 300
+        ControlSend, ahk_parent, {Left}, Rocket League
+        Sleep, 300
+        ControlSend, ahk_parent, {Enter}, Rocket League
+        Sleep, 8000
+        ControlSend, ahk_parent, {Enter}, Rocket League
+    }
+}
+return
+
+F2::ExitApp
+
+Program:
+ToolTip, Waiting for Rocket League to start!!!, 0, 0
+ToolTip, Version 1.0`nF1: open drops`nF2: Close the Program`n`nHow the program works:`n1. Go to the drop opening screen`n2. Press F1 to start auto drop opening`n3. Press F2 to close the program, 0, 0
+WinWait, Rocket League
+Loop
+{
+    if not WinExist("Rocket League")
+        goto Program
+}
+return
