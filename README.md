@@ -8,7 +8,6 @@ This repository contains an AutoHotkey script that serves as a Rocket League Aut
 
 - Automatic crate opening in Rocket League.
 - User-friendly interface.
-- Customizable options.
 
 ## How it Works
 
